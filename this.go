@@ -12,9 +12,9 @@ type funcInfo struct {
 }
 
 type inlinedCall struct {
-	_     [12]byte
-	func_ int32
-	_     [4]byte
+	_  [12]byte
+	fn int32
+	_  [4]byte
 }
 
 //go:linkname callers runtime.callers
@@ -54,7 +54,7 @@ func This() string {
 		inltree := (*[1 << 20]inlinedCall)(inldata)
 		ix := pcdatavalue(info, 1, pc[0], nil)
 		if ix >= 0 {
-			name = funcnameFromNameoff(info, inltree[ix].func_)
+			name = funcnameFromNameoff(info, inltree[ix].fn)
 		}
 	}
 
@@ -79,7 +79,7 @@ func ThisN(n int) string {
 		inltree := (*[1 << 20]inlinedCall)(inldata)
 		ix := pcdatavalue(info, 1, pc[0], nil)
 		if ix >= 0 {
-			name = funcnameFromNameoff(info, inltree[ix].func_)
+			name = funcnameFromNameoff(info, inltree[ix].fn)
 		}
 	}
 
