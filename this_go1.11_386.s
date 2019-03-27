@@ -1,3 +1,5 @@
+// +build go1.11,386
+
 #include "textflag.h"
 
 // This code taken from inserting the following into
@@ -13,7 +15,6 @@
 //    func foo() string {
 //           return bar(getcallerpc())
 //    }
-
 
 TEXT ·This(SB),0,$12-8
 	MOVL addr-4(FP), AX

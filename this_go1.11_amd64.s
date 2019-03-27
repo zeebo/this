@@ -1,3 +1,5 @@
+// +build go1.11,amd64
+
 #include "textflag.h"
 
 // This code taken from inserting the following into
@@ -23,3 +25,4 @@ TEXT ·This(SB),0,$24-16
 	MOVQ CX, ret_base+0(FP)
 	MOVQ AX, ret_len+8(FP)
 	RET
+

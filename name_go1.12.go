@@ -1,3 +1,5 @@
+// +build go1.12
+
 package this
 
 import (
@@ -57,6 +59,3 @@ func Name(pc uintptr) string {
 
 	return funcnameFromNameoff(info, inltree[ix].fn)
 }
-
-// This returns the package/function name being called.
-func This() string

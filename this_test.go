@@ -15,16 +15,16 @@ func (thisTest) method3() string { return thisTest{}.method2() }
 func (*thisTest) pmethod() string { return This() }
 
 func TestThis(t *testing.T) {
-	assert.Equal(t, This(),
-		"github.com/zeebo/this.TestThis")
-	assert.Equal(t, thisTest{}.method(),
-		"github.com/zeebo/this.thisTest.method")
-	assert.Equal(t, thisTest{}.method2(),
-		"github.com/zeebo/this.thisTest.method")
-	assert.Equal(t, thisTest{}.method3(),
-		"github.com/zeebo/this.thisTest.method")
-	assert.Equal(t, new(thisTest).pmethod(),
-		"github.com/zeebo/this.(*thisTest).pmethod")
+	assert.Equal(t, This(), "github.com/zeebo/this.TestThis")
+	assert.Equal(t, thisTest{}.method(), "github.com/zeebo/this.thisTest.method")
+	assert.Equal(t, thisTest{}.method2(), "github.com/zeebo/this.thisTest.method")
+	assert.Equal(t, thisTest{}.method3(), "github.com/zeebo/this.thisTest.method")
+	assert.Equal(t, new(thisTest).pmethod(), "github.com/zeebo/this.(*thisTest).pmethod")
+}
+
+func TestThisN(t *testing.T) {
+	assert.Equal(t, ThisN(0), "github.com/zeebo/this.TestThisN")
+	assert.Equal(t, ThisN(1), "testing.tRunner")
 }
 
 func BenchmarkThis(b *testing.B) {
@@ -53,6 +53,15 @@ func BenchmarkThis(b *testing.B) {
 		b.ReportAllocs()
 		for i := 0; i < b.N; i++ {
 			thisTest{}.method3()
+		}
+	})
+}
+
+func BenchmarkThisN(b *testing.B) {
+	b.Run("Direct", func(b *testing.B) {
+		b.ReportAllocs()
+		for i := 0; i < b.N; i++ {
+			ThisN(1)
 		}
 	})
 }
