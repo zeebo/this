@@ -1,9 +1,9 @@
-// This works on go1.11 and go1.12
+// This works on go1.11+
 
 // +build go1.11,amd64
-// +build !go1.13,amd64
 
 #include "textflag.h"
+#include "funcdata.h"
 
 // This code taken from inserting the following into
 // the runtime package, compiling it, and inspecting it
@@ -20,6 +20,9 @@
 //    }
 
 TEXT ·This(SB),0,$24-16
+	// This is a lie, but the pointers are to readonly data
+	NO_LOCAL_POINTERS
+
 	MOVQ addr-8(FP), AX
 	MOVQ AX, 0(SP)
 	CALL ·Name(SB)

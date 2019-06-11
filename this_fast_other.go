@@ -1,7 +1,7 @@
 // This covers go1.11+ without assembly implementations.
 
-// +build go1.11,!amd64 go1.13,amd64
-// +build go1.11,!386 go1.13,386
+// +build go1.11,!amd64
+// +build go1.11,!386
 
 package this
 
