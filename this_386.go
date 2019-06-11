@@ -1,4 +1,5 @@
 // +build go1.11,386
+// +build !go1.13,386
 
 package this
 

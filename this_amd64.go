@@ -1,4 +1,7 @@
+// This works on go1.11 and go1.12
+
 // +build go1.11,amd64
+// +build !go1.13,amd64
 
 package this
 

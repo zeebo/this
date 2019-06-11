@@ -1,3 +1,5 @@
+// This works on any go less than go 1.11
+
 // +build !go1.11
 
 package this

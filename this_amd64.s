@@ -1,4 +1,7 @@
+// This works on go1.11 and go1.12
+
 // +build go1.11,amd64
+// +build !go1.13,amd64
 
 #include "textflag.h"
 
@@ -10,7 +13,7 @@
 //    func bar(pc uintptr) string {
 //           return ""
 //    }
-//    
+//
 //    //go:noinline
 //    func foo() string {
 //           return bar(getcallerpc())
@@ -25,4 +28,3 @@ TEXT ·This(SB),0,$24-16
 	MOVQ CX, ret_base+0(FP)
 	MOVQ AX, ret_len+8(FP)
 	RET
-

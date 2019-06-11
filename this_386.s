@@ -1,4 +1,7 @@
+// This works on go1.11 and go1.12
+
 // +build go1.11,386
+// +build !go1.13,386
 
 #include "textflag.h"
 
@@ -10,7 +13,7 @@
 //    func bar(pc uintptr) string {
 //           return ""
 //    }
-//    
+//
 //    //go:noinline
 //    func foo() string {
 //           return bar(getcallerpc())

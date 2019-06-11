@@ -1,5 +1,4 @@
-// +build go1.12
-// +build !go1.13
+// +build go1.13
 
 package this
 
@@ -47,13 +46,13 @@ func Name(pc uintptr) string {
 
 	// attempt to determine name, walking inlining data
 	name := funcname(info)
-	inldata := funcdata(info, 2)
+	inldata := funcdata(info, 4)
 	if inldata == nil {
 		return name
 	}
 
 	inltree := (*[1 << 20]inlinedCall)(inldata)
-	ix := pcdatavalue(info, 1, pc, nil)
+	ix := pcdatavalue(info, 2, pc, nil)
 	if ix < 0 {
 		return name
 	}
