@@ -6,16 +6,13 @@ import (
 	"github.com/zeebo/assert"
 )
 
-type thisTest struct{}
+type thisTest struct{ _ *byte }
 
-//go:noinline
-func (thisTest) method() string { return This() }
-
-//go:noinline
-func (*thisTest) pmethod() string { return This() }
-
+func (thisTest) method() string  { return This() }
 func (thisTest) method2() string { return thisTest{}.method() }
 func (thisTest) method3() string { return thisTest{}.method2() }
+
+func (*thisTest) pmethod() string { return This() }
 
 func TestThis(t *testing.T) {
 	assert.Equal(t, This(), "github.com/zeebo/this.TestThis")
